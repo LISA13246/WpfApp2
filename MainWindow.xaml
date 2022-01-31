@@ -1,0 +1,59 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Клиенты" WindowStartupLocation="CenterScreen" 
+        Height="450" Width="800" Icon="resurs/beauty_logo.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+            <Button x:Name="BtnAdeteData" Click="BtnAdeteData_Click"  Content="Добавить" 
+                    Width="100" Height="60" Background="#FFE1E4FF"></Button>
+            <Button x:Name="BtnDeleteData" Click="BtnDeleteData_Click"  Content="Удалить"
+                     Width="100" Height="60"  Background="#FFE1E4FF"></Button>
+            <Button x:Name="BtnClientServis" Click="BtnClientServis_Click" Content="Посещения клиентов"
+                     Width="130" Height="60"  Background="#FFE1E4FF"></Button>
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="DataGridClient"
+                  ColumnWidth="*"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionChanged="DataGridClient_SelectionChanged"
+                   Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия"
+                                    Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Имя"
+                                    Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Отчество"
+                                    Binding="{Binding Patronymic}"/>
+                <DataGridTextColumn Header="Дата рождения"
+                                    Binding="{Binding Birthday, StringFormat={}{0:dd.MMM.yyyy}}"/>
+                <DataGridTextColumn Header="Дата регистрации"
+                                    Binding="{Binding RegistrationDate, StringFormat={}{0:dd.MMM.yyyy}}"/>
+                <DataGridTextColumn Header="Email"
+                                    Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Телефон"
+                                    Binding="{Binding Phone}"/>
+                <DataGridTextColumn Header="Пол"
+                                    Binding="{Binding Gender.Name}"/>
+                <DataGridTextColumn Header="Фото клиента"
+                                    Binding="{Binding PhotoPath}"/>
+                <DataGridTemplateColumn Header="Редактировать">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnEditData" Click="BtnEditData_Click"  Content="Изменить"
+                                    Background="#FFE1E4FF"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

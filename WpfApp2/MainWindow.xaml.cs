@@ -31,15 +31,16 @@ namespace WpfApp2
         {
             DataGridClient.ItemsSource = context.Client.ToList();
         }
+       
 
         private void BtnAdeteData_Click(object sender, RoutedEventArgs e)
         {
             var NEWClient = new Client();
             context.Client.Add(NEWClient);
-            var EditWindow = new WindowClien(context, NEWClient);           
-            EditWindow.ShowDialog();
+            var EditWindow = new WindowClien(context, NEWClient);                       
+            EditWindow.ShowDialog();          
+            ShowTable(); 
             MessageBox.Show("Данные добавлены");
-            ShowTable();
         }
 
         private void BtnDeleteData_Click(object sender, RoutedEventArgs e)
@@ -66,8 +67,8 @@ namespace WpfApp2
             Button BtnEdit = sender as Button;
             var currentClient = BtnEdit.DataContext as Client;
             var EditWindow = new WindowClien(context, currentClient);          
-            EditWindow.ShowDialog();
-            MessageBox.Show("Данные изменены");
+             EditWindow.ShowDialog();
+             MessageBox.Show("Данные изменены");
 
         }
 
@@ -75,5 +76,29 @@ namespace WpfApp2
         {
 
         }
+
+        private void BtnClientServis_Click(object sender, RoutedEventArgs e)
+        {
+            WindowClientServis windowClientServis = new WindowClientServis();
+            windowClientServis.Show();
+            this.Hide();
+        }
+
+        private void CmbFiltr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CmbFiltr.SelectedIndex == 0)
+            {
+                ShowTable();
+            }
+            if (CmbFiltr.SelectedIndex == 1)
+            {
+                DataGridClient.ItemsSource = context.Client.Where(x => x.GenderCode.Contains("1")).ToList();
+            }
+            if (CmbFiltr.SelectedIndex == 2)
+            {
+                DataGridClient.ItemsSource = context.Client.Where(x => x.GenderCode.Contains("2")).ToList();
+            }
+        }
     }
+    
 }

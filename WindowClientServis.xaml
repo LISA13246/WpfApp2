@@ -1,0 +1,43 @@
+﻿<Window x:Class="WpfApp2.WindowClientServis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="WindowClientServis" Height="450" Width="800" Icon="resurs/beauty_logo.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="112"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+            <Button x:Name="BtnBack" Click="BtnBack_Click" Content="Назад" 
+                    Width="130" Height="33" Background="#FFE1E4FF" HorizontalAlignment="Right"/>
+    </StackPanel>
+    <Grid x:Name="GridLogo" Grid.Row="0" HorizontalAlignment="Left" >
+        <Label Content="Мордочка" HorizontalAlignment="Left" VerticalAlignment="Center"  
+                     Height="60" Width="360" Background="White" Padding="100,30,0,0" FontSize="16" Margin="0,15,0,35"/>
+        <Image Source ="beauty_logo.png" Height="88" Margin="5,5,5,5" Width="110" HorizontalAlignment="Left"/>
+            
+    </Grid>
+        <DataGrid Grid.Row="1" x:Name="DataGridClientServis"
+                  ColumnWidth="*"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionChanged="DataGridClientServis_SelectionChanged"
+                  Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Клиент"
+                                    Binding="{Binding Client.FirstName}"/>
+                <DataGridTextColumn Header="Услуга"
+                                    Binding="{Binding Service.Title}"/>
+                <DataGridTextColumn Header="Дата начала"
+                                    Binding="{Binding StartTime}"/>
+                <DataGridTextColumn Header="Комментарий"
+                                    Binding="{Binding Comment}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

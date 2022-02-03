@@ -1,0 +1,83 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Клиенты" WindowStartupLocation="CenterScreen" 
+        Height="450" Width="800" Icon="resurs/beauty_logo.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="5" >
+             <Button x:Name="BtnClientServis" Click="BtnClientServis_Click" Content="Записи клиентов"
+                     Width="130" Height="33"  Background="#FFE1E4FF" ></Button>
+            <Button x:Name="BtnAdeteData" Click="BtnAdeteData_Click"  Content="Добавить" 
+                    Width="130" Height="33" Background="#FFE1E4FF" ></Button>
+            <Button x:Name="BtnDeleteData" Click="BtnDeleteData_Click"  Content="Удалить"
+                     Width="130" Height="33"  Background="#FFE1E4FF" ></Button>
+            
+        </StackPanel>
+        <Grid x:Name="GridLogo" Grid.Row="0" HorizontalAlignment="Left" >
+            <Label Content="Мордочка" HorizontalAlignment="Left" VerticalAlignment="Center"  
+                     Height="60" Width="360" Background="White" Padding="100,30,0,0" FontSize="16" Margin="0,15,0,35"/>
+            <Image Source ="beauty_logo.png" Height="88" Margin="5,10,0,12" Width="110" HorizontalAlignment="Left"/>
+           
+        </Grid>
+        <Grid x:Name="GridFiltr" Grid.Row="0"  HorizontalAlignment="Center">
+            <Label Content="Фильтрация по полу: " Margin="-112,30,111.667,-30"/>
+            <ComboBox x:Name="CmbFiltr" Height="30" Width="120" SelectionChanged="CmbFiltr_SelectionChanged" Margin="-108,60,116.667,20">
+                <Label Content="Все" ></Label>
+                <Label Content="Мужчины" ></Label>
+                <Label Content="Женщины"></Label>
+            </ComboBox>
+        </Grid>
+        <DataGrid Grid.Row="1" x:Name="DataGridClient"
+                  ColumnWidth="*"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionChanged="DataGridClient_SelectionChanged"
+                   Background="White"
+                  ItemsSource="{Binding Клиенты}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия"
+                                    Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Имя"
+                                    Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Отчество"
+                                    Binding="{Binding Patronymic}"/>
+                <DataGridTextColumn Header="Дата рождения"
+                                    Binding="{Binding Birthday, StringFormat={}{0:dd.MMM.yyyy}}"/>
+                <DataGridTextColumn Header="Дата регистрации"
+                                    Binding="{Binding RegistrationDate, StringFormat={}{0:dd.MMM.yyyy}}"/>
+                <DataGridTextColumn Header="Email"
+                                    Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Телефон"
+                                    Binding="{Binding Phone}"/>
+                <DataGridTextColumn Header="Пол"
+                                    Binding="{Binding Gender.Name}"/>
+                <DataGridTemplateColumn Header="Фото клиента" MaxWidth="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding PhotoPath}" Width="100" Height="60"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Редактировать">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnEditData" Click="BtnEditData_Click"  Content="Изменить"
+                                    Background="#FFE1E4FF"></Button>
+                       </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+      
+    </Grid>
+</Window>

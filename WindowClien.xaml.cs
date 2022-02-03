@@ -28,12 +28,13 @@ namespace WpfApp2
             this.context = context;
             CmbGender.ItemsSource = context.Gender.ToList();
             this.DataContext = client;
+         
         }
 
         private void SaveData_Click(object sender, RoutedEventArgs e)
         {
             SaveImage();
-            context.SaveChanges();           
+            context.SaveChanges();
             this.Close();
         }
         
@@ -51,5 +52,7 @@ namespace WpfApp2
                 Img.Source = new BitmapImage(new Uri(namefile));
             }
         }
+
+
     }
 }

@@ -11,21 +11,38 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" ></RowDefinition>
             <RowDefinition></RowDefinition>
+            
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="5" >
+             <Button x:Name="BtnClientServis" Click="BtnClientServis_Click" Content="Записи клиентов"
+                     Width="130" Height="33"  Background="#FFE1E4FF" ></Button>
             <Button x:Name="BtnAdeteData" Click="BtnAdeteData_Click"  Content="Добавить" 
-                    Width="100" Height="60" Background="#FFE1E4FF"></Button>
+                    Width="130" Height="33" Background="#FFE1E4FF" ></Button>
             <Button x:Name="BtnDeleteData" Click="BtnDeleteData_Click"  Content="Удалить"
-                     Width="100" Height="60"  Background="#FFE1E4FF"></Button>
-            <Button x:Name="BtnClientServis" Click="BtnClientServis_Click" Content="Посещения клиентов"
-                     Width="130" Height="60"  Background="#FFE1E4FF"></Button>
+                     Width="130" Height="33"  Background="#FFE1E4FF" ></Button>
+            
         </StackPanel>
+        <Grid x:Name="GridLogo" Grid.Row="0" HorizontalAlignment="Left" >
+            <Label Content="Мордочка" HorizontalAlignment="Left" VerticalAlignment="Center"  
+                     Height="60" Width="360" Background="White" Padding="100,30,0,0" FontSize="16" Margin="0,15,0,35"/>
+            <Image Source ="beauty_logo.png" Height="88" Margin="5,10,0,12" Width="110" HorizontalAlignment="Left"/>
+           
+        </Grid>
+        <Grid x:Name="GridFiltr" Grid.Row="0"  HorizontalAlignment="Center">
+            <Label Content="Фильтрация по полу: " Margin="-112,30,111.667,-30"/>
+            <ComboBox x:Name="CmbFiltr" Height="30" Width="120" SelectionChanged="CmbFiltr_SelectionChanged" Margin="-108,60,116.667,20">
+                <Label Content="Все" ></Label>
+                <Label Content="Мужчины" ></Label>
+                <Label Content="Женщины"></Label>
+            </ComboBox>
+        </Grid>
         <DataGrid Grid.Row="1" x:Name="DataGridClient"
                   ColumnWidth="*"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   SelectionChanged="DataGridClient_SelectionChanged"
-                   Background="White">
+                   Background="White"
+                  ItemsSource="{Binding Клиенты}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Фамилия"
                                     Binding="{Binding FirstName}"/>
@@ -43,17 +60,24 @@
                                     Binding="{Binding Phone}"/>
                 <DataGridTextColumn Header="Пол"
                                     Binding="{Binding Gender.Name}"/>
-                <DataGridTextColumn Header="Фото клиента"
-                                    Binding="{Binding PhotoPath}"/>
+                <DataGridTemplateColumn Header="Фото клиента" MaxWidth="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding PhotoPath}" Width="100" Height="60"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn Header="Редактировать">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="BtnEditData" Click="BtnEditData_Click"  Content="Изменить"
                                     Background="#FFE1E4FF"></Button>
-                        </DataTemplate>
+                       </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+      
     </Grid>
 </Window>

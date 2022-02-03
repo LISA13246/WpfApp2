@@ -24,9 +24,9 @@
             <TextBlock>Дата регистрации</TextBlock>
             <DatePicker SelectedDate="{Binding RegistrationDate}"></DatePicker>
             <TextBlock>Email</TextBlock>
-            <TextBox Text="{Binding Email}" MaxLength="50"></TextBox>
+            <TextBox Text="{Binding Email}"></TextBox>
             <TextBlock>Телефон</TextBlock>
-            <TextBox Text="{Binding Phone}" MaxLength="20"></TextBox>
+            <TextBox Text="{Binding Phone}" MaxLength="20" ></TextBox>
             <TextBlock>Пол</TextBlock>
             <ComboBox x:Name="CmbGender" DisplayMemberPath="Name" SelectedItem="{Binding Gender}"
                       Background="White"></ComboBox>
